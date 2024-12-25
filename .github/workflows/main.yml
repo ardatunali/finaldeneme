@@ -29,7 +29,7 @@ jobs:
           # Çıktıyı aralığınız.txt dosyasına yaz
           echo "$(python main.py input.txt)" > araliginiz.txt
           
-          git add aralığınız.txt  # Dosyayı Git'e ekle
+          git add araliginiz.txt  # Dosyayı Git'e ekle
           git commit -m "Update age range result"  # Commit yap
 
           # GitHub Token ile kimlik doğrulaması yaparak push işlemini gerçekleştir
