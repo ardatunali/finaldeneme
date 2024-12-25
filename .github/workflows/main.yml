@@ -3,7 +3,7 @@ name: Process Age Range
 on:
   push:
     paths:
-      - 'input.txt'  # input.txt dosyasına yapılan değişiklikleri tetikler
+      - '**/input.txt'  # input.txt dosyasının herhangi bir yerdeki değişikliğiyle tetiklenir
 
 jobs:
   process:
@@ -17,12 +17,6 @@ jobs:
         with:
           python-version: '3.x'  # Python versiyonunu belirle
 
-      # requirements.txt yoksa bu adımı kaldırabilirsiniz:
-      # - name: Install dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install -r requirements.txt  # Bu satırı kaldırın
-
       - name: Run the script
         run: |
           python main.py input.txt  # Python kodunu çalıştır
@@ -30,11 +24,13 @@ jobs:
       - name: Commit and push the result
         run: |
           git config --global user.email "youremail@example.com"
-          git config --global user.name "Your Name"
-          echo "$(python main.py input.txt)" > aralığınız.txt  # Çıktıyı aralığınız.txt dosyasına yaz
+          git config --global user.name "GitHub Actions"
+          
+          # Çıktıyı aralığınız.txt dosyasına yaz
+          echo "$(python main.py input.txt)" > aralığınız.txt
+          
           git add aralığınız.txt  # Dosyayı Git'e ekle
           git commit -m "Update age range result"  # Commit yap
-          git push  # GitHub'a push yap
-	  
-	  # GitHub Token ile kimlik doğrulaması yaparak push işlemini gerçekleştir
+
+          # GitHub Token ile kimlik doğrulaması yaparak push işlemini gerçekleştir
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ardatunali/finaldeneme.git
