@@ -3,34 +3,35 @@ name: Process Age Range
 on:
   push:
     paths:
-      - 'input.txt'  # input.txt dosyası değiştirildiğinde tetiklenir
+      - 'input.txt'  # input.txt dosyasına yapılan değişiklikleri tetikler
 
 jobs:
   process:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Ubuntu işletim sistemi üzerinde çalışacak
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Kodu kontrol et
 
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.x'
+          python-version: '3.x'  # Python versiyonunu belirle
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      # requirements.txt yoksa bu adımı kaldırabilirsiniz:
+      # - name: Install dependencies
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install -r requirements.txt  # Bu satırı kaldırın
 
       - name: Run the script
         run: |
-          python main.py input.txt
+          python main.py input.txt  # Python kodunu çalıştır
 
       - name: Commit and push the result
         run: |
           git config --global user.email "youremail@example.com"
           git config --global user.name "Your Name"
-          echo "$(python main.py input.txt)" > aralığınız.txt
-          git add aralığınız.txt
-          git commit -m "Update age range result"
-          git push
+          echo "$(python main.py input.txt)" > aralığınız.txt  # Çıktıyı aralığınız.txt dosyasına yaz
+          git add aralığınız.txt  # Dosyayı Git'e ekle
+          git commit -m "Update age range result"  # Commit yap
+          git push  # GitHub'a push yap
