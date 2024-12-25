@@ -25,3 +25,7 @@ def dosya_okuma_ve_isleme(dosya_adi):
         return f"Hata: {str(e)}"
 #deneme
 
+if __name__ == "__main__":
+    result = dosya_okuma_ve_isleme('input.txt')
+    with open('aralığınız.txt', 'w') as file:
+        file.write(result)  # Çıktıyı aralığınız.txt dosyasına yaz
