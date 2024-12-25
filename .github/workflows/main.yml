@@ -1,0 +1,36 @@
+name: Process Age Range
+
+on:
+  push:
+    paths:
+      - 'input.txt'  # input.txt dosyası değiştirildiğinde tetiklenir
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run the script
+        run: |
+          python main.py input.txt
+
+      - name: Commit and push the result
+        run: |
+          git config --global user.email "youremail@example.com"
+          git config --global user.name "Your Name"
+          echo "$(python main.py input.txt)" > aralığınız.txt
+          git add aralığınız.txt
+          git commit -m "Update age range result"
+          git push
