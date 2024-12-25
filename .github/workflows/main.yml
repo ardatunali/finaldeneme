@@ -35,3 +35,6 @@ jobs:
           git add aralığınız.txt  # Dosyayı Git'e ekle
           git commit -m "Update age range result"  # Commit yap
           git push  # GitHub'a push yap
+	  
+	  # GitHub Token ile kimlik doğrulaması yaparak push işlemini gerçekleştir
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ardatunali/finaldeneme.git
