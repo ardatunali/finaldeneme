@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.x'  # Python versiyonunu belirle
+          python-version: '3.9'  # Python versiyonunu belirle
 
       - name: Run the script
         run: |
@@ -25,8 +25,7 @@ jobs:
 
       - name: Commit and push the result
         run: |
-          git config --global user.email "youremail@example.com"
-          git config --global user.name "GitHub Actions"
+          
           
           # Çıktıyı aralığınız.txt dosyasına yaz
           echo "$(python main.py input.txt)" > araliginiz.txt
