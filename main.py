@@ -23,4 +23,5 @@ def dosya_okuma_ve_isleme(dosya_adi):
             return result
     except Exception as e:
         return f"Hata: {str(e)}"
+#deneme
 
